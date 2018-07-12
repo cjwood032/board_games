@@ -2,7 +2,7 @@ module BoardGames
 end
 
 require 'nokogiri'
-#require 'pry'
+require 'pry'
 require 'open-uri'
 require 'capybara/poltergeist'
 require_relative "board_games/scraper"

@@ -122,8 +122,8 @@ Type 'list types' for a list of types. Type 'quit' to go back
 			if count > @given_range
 				break
 			end
-			type =	BoardGames::Game.get_types(game.url)
-			game.type=type
+			type=game.get_types
+			game.types=type
 			@types << type
 		end #end the games each do
 		@types=@types.flatten.uniq
@@ -142,16 +142,18 @@ Type 'list types' for a list of types. Type 'quit' to go back
   end #end the update menu
 #~~~~~~~~~~~~~~~~
   def show_deets(bg)
-		g=BoardGames::Game.scrapegame(bg.url)
-    puts <<-DOC
+		bg.scrapegame
+		#binding.pry
+		puts <<-DOC
           #{bg.title}
     Ranked: ##{bg.rank} overall.
-    For #{g.players} players.
-    Average playtime is #{g.playtime} minutes.
-    Types: #{g.type}
-  Categories: ~#{g.category}~
+    For #{bg.players} players.
+    Average playtime is #{bg.playtime} minutes.
+    Types: #{bg.types}
+  Categories: ~#{bg.category}~
 		DOC
-    g.description.each do |x|
+		binding.pry
+    bg.description.each do |x|
 			puts x.center(20)
 		end #end description
 		top_menu
